@@ -20,7 +20,7 @@ public class practica1 extends ApplicationAdapter {
         lapiz = new SpriteBatch();
 
         // Cargar una imagen desde la carpeta assets
-        miImagen = new Texture("libgdx.png");
+        miImagen = new Texture("logo_incos.png");
 
         // Crear un texto básico
         miTexto = new BitmapFont();
@@ -40,7 +40,7 @@ public class practica1 extends ApplicationAdapter {
         lapiz.begin();
 
         // Dibujar la imagen en la posición (x = 50, y = 80)
-        lapiz.draw(miImagen, 200, 300);
+        lapiz.draw(miImagen, 50, 250,200,200);
 
         // Dibujar texto en pantalla
         miTexto.draw(lapiz, "Mi nombre es Yesmani!", 50, 200);
