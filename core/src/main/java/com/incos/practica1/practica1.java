@@ -13,6 +13,10 @@ public class practica1 extends ApplicationAdapter {
     private SpriteBatch lapiz;       // Dibuja imágenes y texto
     private Texture miImagen;        // Una imagen simple
     private BitmapFont miTexto;      // Para escribir palabras en pantalla
+    //Variables
+    private float x = 50;      // posición inicial en X
+    private float y = 250;     // posición inicial en Y
+    private float velocidadX = 2; // velocidad horizontal
 
     @Override
     public void create() {
@@ -36,14 +40,23 @@ public class practica1 extends ApplicationAdapter {
         Color color = Color.valueOf("#000000"); // HEX
         ScreenUtils.clear(color.r, color.g, color.b, color.a);
 
+        x += velocidadX; // moverse a la derecha
+        if (x > 400) {
+            velocidadX = -velocidadX;
+        }
+        if (x < 0) {
+            velocidadX = -velocidadX;
+        }
+
+
         // Empezamos a dibujar
         lapiz.begin();
 
         // Dibujar la imagen en la posición (x = 50, y = 80)
-        lapiz.draw(miImagen, 50, 250,200,200);
+        lapiz.draw(miImagen, x, y,200,200);
 
         // Dibujar texto en pantalla
-        miTexto.draw(lapiz, "Mi nombre es Yesmani!", 50, 200);
+        miTexto.draw(lapiz, "Movimiento del logo", 50, 200);
 
         // Terminamos de dibujar
         lapiz.end();
