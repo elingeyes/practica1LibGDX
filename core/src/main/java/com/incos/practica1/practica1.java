@@ -1,6 +1,7 @@
 package com.incos.practica1;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -16,8 +17,11 @@ public class practica1 extends ApplicationAdapter {
     //Variables
     private float x = 50;      // posición inicial en X
     private float y = 250;     // posición inicial en Y
-    private float velocidadX = 2; // velocidad horizontal
-    private float velocidadY = 2;    // Velocidad vertical
+    //private float velocidadX = 2; // velocidad horizontal
+    //private float velocidadY = 2;    // Velocidad vertical
+
+    // Velocidad para moverse hacia el toque
+    private float velocidad = 200;  // pixeles por segundo
 
     @Override
     public void create() {
@@ -41,7 +45,7 @@ public class practica1 extends ApplicationAdapter {
         Color color = Color.valueOf("#000000"); // HEX
         ScreenUtils.clear(color.r, color.g, color.b, color.a);
 
-        x += velocidadX; // moverse a la derecha
+       /* x += velocidadX; // moverse a la derecha
         y += velocidadY;
         // Rebote horizontal
         if (x > 400 || x < 0) {
@@ -51,6 +55,21 @@ public class practica1 extends ApplicationAdapter {
         // Rebote vertical
         if (y > 500 || y < 0) {
             velocidadY = -velocidadY;
+        }*/
+
+        // Tiempo entre frames para movimiento suave
+        float delta = Gdx.graphics.getDeltaTime();
+
+        if (Gdx.input.isTouched()) {
+            float toqueX = Gdx.input.getX();
+            float toqueY = Gdx.graphics.getHeight() - Gdx.input.getY(); // invertir eje
+
+            // Mover la imagen hacia el toque
+            if (x < toqueX) x += velocidad * delta;
+            if (x > toqueX) x -= velocidad * delta;
+
+            if (y < toqueY) y += velocidad * delta;
+            if (y > toqueY) y -= velocidad * delta;
         }
 
 
