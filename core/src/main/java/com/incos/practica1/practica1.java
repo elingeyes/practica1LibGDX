@@ -17,6 +17,7 @@ public class practica1 extends ApplicationAdapter {
     private float x = 50;      // posición inicial en X
     private float y = 250;     // posición inicial en Y
     private float velocidadX = 2; // velocidad horizontal
+    private float velocidadY = 2;    // Velocidad vertical
 
     @Override
     public void create() {
@@ -41,11 +42,15 @@ public class practica1 extends ApplicationAdapter {
         ScreenUtils.clear(color.r, color.g, color.b, color.a);
 
         x += velocidadX; // moverse a la derecha
-        if (x > 400) {
+        y += velocidadY;
+        // Rebote horizontal
+        if (x > 400 || x < 0) {
             velocidadX = -velocidadX;
         }
-        if (x < 0) {
-            velocidadX = -velocidadX;
+
+        // Rebote vertical
+        if (y > 500 || y < 0) {
+            velocidadY = -velocidadY;
         }
 
 
