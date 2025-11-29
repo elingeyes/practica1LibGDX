@@ -21,7 +21,7 @@ public class practica1 extends ApplicationAdapter {
     //private float velocidadY = 2;    // Velocidad vertical
 
     // Velocidad para moverse hacia el toque
-    private float velocidad = 200;  // pixeles por segundo
+    private float velocidad = 400;  // pixeles por segundo
 
     @Override
     public void create() {
@@ -72,6 +72,15 @@ public class practica1 extends ApplicationAdapter {
             if (y > toqueY) y -= velocidad * delta;
         }
 
+        //Límites
+        float ancho = Gdx.graphics.getWidth();
+        float alto = Gdx.graphics.getHeight();
+
+        if (x < 0) x = 0;
+        if (x > ancho - 200) x = ancho - 200;
+
+        if (y < 0) y = 0;
+        if (y > alto - 200) y = alto - 200;
 
         // Empezamos a dibujar
         lapiz.begin();
